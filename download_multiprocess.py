@@ -29,7 +29,7 @@ def download_from_file(input_file):
 
             # request
             try:
-                r = requests.get(line[:-1], stream=True, timeout=15)
+                r = requests.get(line[:-1], stream=True, timeout=10)
             except:
                 continue
             

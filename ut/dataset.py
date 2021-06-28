@@ -1,7 +1,8 @@
 from torch.utils.data import Dataset
 import pandas as pd
 
-from PIL import Image
+from PIL import Image, ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 class SportDataset(Dataset):
     def __init__(self, path, transform = None): 

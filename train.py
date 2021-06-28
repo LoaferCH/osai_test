@@ -44,7 +44,7 @@ def train(dataloaders):
 
     # creating dir for weights
     today = datetime.now()
-    save_dir = 'resnet50_'+today.strftime("%Y-%m-%d-%H:%M:%S")
+    save_dir = 'weights/resnet50_'+today.strftime("%Y-%m-%d-%H:%M:%S")
     os.makedirs(save_dir, exist_ok=True)
 
     since = time.time()

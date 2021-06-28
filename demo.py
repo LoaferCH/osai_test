@@ -19,13 +19,19 @@ def run(path, model_path):
     image_tensor = image_tensor.unsqueeze(0)
 
     net = torch.load(model_path)
+    # adding softmax
+    net = torch.nn.Sequential(
+        net, 
+        torch.nn.Softmax(1))
+
 
     net.eval()
     net.to('cuda:0')
     image_tensor = image_tensor.to('cuda:0')
     output = net(image_tensor)
+    # print('output', output)
     result = torch.argmax(output).detach().cpu().numpy()
-    print(classes[result[0]])
+    print(classes[int(result)])
 
 
 
