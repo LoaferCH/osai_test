@@ -1,10 +1,10 @@
 ## Тестовое задание на позицию Computer Vision Engineer в OSAI
 
 + Устанавливем nvidia-docker и настраиваем его
-+ Билдим докерфайл docker build --tag osai_test:1.0 dockerfile/   
++ Билдим докерфайл 
+```docker build --tag osai_test:1.0 dockerfile/```
 + Запуск докера
-
-```docker run --gpus=all --ipc=host -v /media/sasha/d4556992-6bd6-482d-9f2d-d5bc5d9a00ad4/delete_me/osai:/workspace -it osai_test:1.0 bash```
+```docker run --gpus=all --ipc=host -v папка_репозитория:/workspace -it osai_test:1.0 bash```
 
 #### Скачивание файлов:
 + Для скачивания нужно использовать скрипт download_multiprocess.py
