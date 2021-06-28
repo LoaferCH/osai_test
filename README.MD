@@ -1,24 +1,26 @@
 ## Тестовое задание на позицию Computer Vision Engineer в OSAI
 
-Рядом с этим файлом лежат папки `train/` и `test/`, в которых находятся файлы по 14 видам спорта, в их числе и те, с которыми в OSAI знакомы очень близко :)
-Каждый файл содержит список url-ов к картинкам.
++ Устанавливем nvidia-docker и настраиваем его
++ Билдим докерфайл docker build --tag osai_test:1.0 dockerfile/   
++ Запуск докера
 
-#### Что нужно сделать:
-+ 0. Написать скрипт, который скачает изображения и сформирует обучающую и тестовую выборки. Некоторые ссылки могут быть битыми, это нормально, скрипт должен предусматривать это и не падать при возникновении исключений.
-+ 1. Написать бейзлайн и обучить классификатор на train выборке.
-+ 2. Оценить качество на test выборке. Метрика: macro-F1 ([пример реализации](https://torchmetrics.readthedocs.io/en/latest/references/modules.html#f1))
-3. Описать в README свое решение, полученный результат и инструкцию для воспроизведения всех шагов.
+```docker run --gpus=all --ipc=host -v /media/sasha/d4556992-6bd6-482d-9f2d-d5bc5d9a00ad4/delete_me/osai:/workspace -it osai_test:1.0 bash```
 
-#### Альтернативное задание на случай, если нет GPU для обучения
-0. То же самое, объединить train и test вместе.
-1. Взять предобученную модель и извлечь фичи для всех изображений.
-2. Вычислить для каждого класса центроиды векторных представлений и определить наиболее "похожие" виды спорта. Визуализировать полученный результат.
-3. То же самое
+#### Скачивание файлов:
++ Для скачивания нужно использовать скрипт download_multiprocess.py
 
-### Нюансы:
-- Крайне желательно обернуть свое решение в Docker, чтобы было проще его перезапустить. [Пример](https://github.com/osai-ai/dokai) docker-образов со всем необходимым на Pytorch.
-- Результатом тестового задания является github-репозиторий.
+```python3 download_multiprocess.py --input_dir train```
 
+```python3 download_multiprocess.py --input_dir test```
+
+#### Обучение
++ Для обучения скрипт train.py
+
+```python3 train.py --path_to_train_csv train_images/downloaded.csv --path_to_test_csv test_images/downloaded.csv --batch_size 32```
 
 
-docker run --gpus=all --ipc=host -v /media/sasha/d4556992-6bd6-482d-9f2d-d5bc5d9a00ad4/delete_me/osai:/workspace -it ghcr.io/osai-ai/dokai:20.09-pytorch bash
+### Результаты:
+
+
+
+
